@@ -45,13 +45,9 @@ node 'slave2.puppet' {
       <VirtualHost *:80>
         DocumentRoot /var/www/html
         <Directory /var/www/html>
-          Options Indexes FollowSymLinks
-          AllowOverride All
-          Require all granted
+          ErrorLog /var/log/httpd/php_error.log
+          CustomLog /var/log/httpd/php_access.log combined 
         </Directory>
-        <FilesMatch \.php$>
-          SetHandler application/x-httpd-php
-        </FilesMatch>
       </VirtualHost>",
   }
 
