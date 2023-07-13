@@ -15,7 +15,6 @@ node 'slave1.puppet' {
       <VirtualHost *:80>
         DocumentRoot /var/www/html
       </VirtualHost>",
-    require => Package['httpd'],
   }
 
   service { 'httpd':
