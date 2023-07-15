@@ -59,10 +59,10 @@ node 'slave2.puppet' {
 node 'master.puppet' {
   include nginx
 
-  nginx::resource::server { 'master':
-  listen_port => 81,
-  proxy       => 'http://192.168.21.11',
-  listen_port => 82,
-  proxy       => 'http://192.168.21.12',
-  }
+  #nginx::resource::server { 'master':
+  #listen_port => 81,
+ # proxy       => 'http://192.168.21.11',
+  #listen_port => 82,
+ # proxy       => 'http://192.168.21.12',
+ # }
 }
