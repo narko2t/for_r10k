@@ -62,8 +62,7 @@ node 'master.puppet' {
     ensure => installed,
   }
   
-  file { '/etc/nginx/sites-available/default':
-    ensure  => file,
+  file { '/etc/nginx/nginx.conf':
     content => "
       server {
         listen 81;
