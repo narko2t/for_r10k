@@ -61,5 +61,21 @@ node 'master.puppet' {
   package { 'nginx':
     ensure => installed,
   }
-
+  
+  file { '/etc/nginx/sites-available/default':
+    ensure  => file,
+    content => "
+      server {
+        listen 81;
+        location / {
+          proxy_pass http://192.168.21.11;
+        }
+      }
+      server {
+        listen 82;
+        location / {
+          proxy_pass http://192.168.21.12;
+        }
+      },
+  }
 }
