@@ -57,7 +57,7 @@ node 'slave2.puppet' {
 }
 
 node 'master.puppet' {
-  class{'nginx': }
+  include nginx
 
   nginx::resource::location{'/static':
     proxy => '192.168.21.11' ,
