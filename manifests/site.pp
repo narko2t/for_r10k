@@ -55,3 +55,14 @@ node 'slave2.puppet' {
     enable => true,
   }
 }
+
+node 'master.puppet' {
+  class{'nginx': }
+
+  nginx::resource::location{'/81':
+    proxy => '192.168,21,11' ,
+  }
+  nginx::resource::location{'/82':
+    proxy => '192.168,21,12' ,
+  }
+}
