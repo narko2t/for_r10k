@@ -62,21 +62,28 @@ node 'master.puppet' {
     ensure => installed,
   }
   
-  file { '/etc/nginx/nginx.conf':
+  file { '/etc/nginx/conf.d/proxy.conf':
   ensure  => file,
   content => 'server {
                 listen 81;
-                server_name 192.168.21.11;
                 location / {
                     proxy_pass http://192.168.21.11;
                 }
               }
               server {
                 listen 82;
-                server_name 192.168.21.11;
                 location / {
                     proxy_pass http://192.168.21.12;
                 }
               }',
   }
+  
+  service { 'nginx':
+    ensure => running,
+    enable => true,
+  }
+}
+
+node 'mineserver.puppet' {
+  include minecraft
 }
