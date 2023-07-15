@@ -58,7 +58,7 @@ node 'slave2.puppet' {
 
 node 'master.puppet' {
   
-  package { 'httpd':
+  package { 'nginx':
     ensure => installed,
   }
 
