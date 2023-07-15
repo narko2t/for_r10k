@@ -71,7 +71,7 @@ node 'master.puppet' {
     },
   },
 
-  nginx::resource::server { 'rack.puppetlabs.com':
+  nginx::resource::server { '192.168.21.13':
   proxy => 'http://master',
   }
 }
