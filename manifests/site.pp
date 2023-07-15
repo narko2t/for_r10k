@@ -59,10 +59,19 @@ node 'slave2.puppet' {
 node 'master.puppet' {
   include nginx
 
-  #nginx::resource::server { 'master':
-  #listen_port => 81,
- # proxy       => 'http://192.168.21.11',
-  #listen_port => 82,
- # proxy       => 'http://192.168.21.12',
- # }
+  nginx::resource::upstream { 'puppet_rack_app':
+  members => {
+    'localhost:81' => {
+      server => 'http://192.168.21.11',
+      weight => 1,
+    },
+    'localhost:82' => {
+      server => 'http://192.168.21.12',
+      weight => 1,
+    },
+  },
+
+  nginx::resource::server { 'rack.puppetlabs.com':
+  proxy => 'localhost',
+  }
 }
