@@ -8,13 +8,14 @@ class minecraft {
     ensure => installed,
   }
 
-  exec { 'download_minecraft_server':
-    command     => 'wget https://piston-data.mojang.com/v1/objects/84194a2f286ef7c14ed7ce0090dba59902951553/server.jar -O minecraft_server.jar',
-    cwd         => '/opt/minecraft',
-    creates     => '/opt/minecraft/server.properties'
-    refreshonly => true,
-  }
+  file { '/opt/minecraft/minecraft_server.1.20.1.jar':
+  ensure => present,
+  source => 'https://piston-data.mojang.com/v1/objects/84194a2f286ef7c14ed7ce0090dba59902951553/server.jar',
 
+  file { '/opt/minecraft/server.properties':
+    ensure => file,
+  }
+  
   file { '/etc/systemd/system/minecraft.service':
     source => "puppet:///modules/minecraft/minecraft.service",
     notify  => Service['minecraft'],
