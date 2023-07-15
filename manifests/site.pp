@@ -57,21 +57,9 @@ node 'slave2.puppet' {
 }
 
 node 'master.puppet' {
-  include nginx
-
-  nginx::resource::upstream { 'master':
-  members => {
-    'localhost:81' => {
-      server => 'http://192.168.21.11',
-      weight => 1,
-    },
-    'localhost:82' => {
-      server => 'http://192.168.21.12',
-      weight => 1,
-    },
-  },
-
-  nginx::resource::server { '192.168.21.13':
-  proxy => 'http://master',
+  
+  package { 'httpd':
+    ensure => installed,
   }
+
 }
