@@ -63,18 +63,20 @@ node 'master.puppet' {
   }
   
   file { '/etc/nginx/nginx.conf':
-    content => "
-      server {
-        listen 81;
-        location / {
-          proxy_pass http://192.168.21.11;
-        }
-      }
-      server {
-        listen 82;
-        location / {
-          proxy_pass http://192.168.21.12;
-        }
-      },
+  ensure  => file,
+  content => 'server {
+                listen 81;
+                server_name 192.168.21.11;
+                location / {
+                    proxy_pass http://192.168.21.11;
+                }
+              }
+              server {
+                listen 82;
+                server_name 192.168.21.11;
+                location / {
+                    proxy_pass http://192.168.21.12;
+                }
+              }',
   }
 }
