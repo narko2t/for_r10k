@@ -59,10 +59,10 @@ node 'slave2.puppet' {
 node 'master.puppet' {
   class{'nginx': }
 
-  nginx::resource::location{'/81':
+  nginx::resource::location{'/static':
     proxy => '192.168.21.11' ,
   }
-  nginx::resource::location{'/82':
+  nginx::resource::location{'/dinamic':
     proxy => '192.168.21.12' ,
   }
 }
