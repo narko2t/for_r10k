@@ -38,17 +38,17 @@ node 'slave2.puppet' {
     source  => '/home/vagrant/index.php',
   }
 
-  file { '/etc/httpd/conf.d/dinamic.conf':
-    ensure  => file,
-    content => "
-      <VirtualHost *:80>
-        DocumentRoot /var/www/html
-        <Directory /var/www/html>
-          ErrorLog /var/log/httpd/php_error.log
-          CustomLog /var/log/httpd/php_access.log combined 
-        </Directory>
-      </VirtualHost>",
-  }
+  #file { '/etc/httpd/conf.d/dinamic.conf':
+  #  ensure  => file,
+  #  content => "
+  #    <VirtualHost *:80>
+  #      DocumentRoot /var/www/html
+  #      <Directory /var/www/html>
+  #        ErrorLog /var/log/httpd/php_error.log
+  #        CustomLog /var/log/httpd/php_access.log combined 
+  #      </Directory>
+  #    </VirtualHost>",
+  #}
 
   service { 'httpd':
     ensure => running,
