@@ -4,7 +4,7 @@ class minecraft {
     ensure => directory,
   }
 
-  package { 'java-11-openjdk-devel':
+  package { 'java-17-openjdk-devel':
     ensure => installed,
   }
 
